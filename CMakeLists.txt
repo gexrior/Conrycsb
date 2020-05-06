@@ -19,22 +19,28 @@ link_libraries(${CRYPTO_LIBRARIES} ${CMAKE_DL_LIBS})
 
 # Source file define
 set(SRC_NET ${PROJECT_SOURCE_DIR}/src/net)
-set(SRC_INDEX ${PROJECT_SOURCE_DIR}/src/index)
+set(SRC_BENCHMARK ${PROJECT_SOURCE_DIR}/src/benchmark)
 
 # Build library
 file(GLOB_RECURSE SRC_NET_LIB ${SRC_NET}/*.cpp)
 add_library(net SHARED ${SRC_NET_LIB})
 link_libraries(net)
 
-file(GLOB_RECURSE SRC_INDEX_LIB ${SRC_INDEX}/*.cpp)
-add_library(index SHARED ${SRC_INDEX_LIB})
-link_libraries(index)
+#file(GLOB_RECURSE SRC_INDEX_LIB ${SRC_INDEX}/*.cpp)
+#add_library(index SHARED ${SRC_INDEX_LIB})
+#link_libraries(index)
+
+file(GLOB_RECURSE SRC_BENCHMARK_LIB ${SRC_BENCHMARK}/*.cpp)
+add_library(benchmark SHARED ${SRC_BENCHMARK_LIB})
+link_libraries(benchmark)
 
 
 
 #Build server
-add_executable(server ${PROJECT_SOURCE_DIR}/src/server/teser.cpp)
+file(GLOB_RECURSE SRC_SERVER_LIB ${PROJECT_SOURCE_DIR}/src/server/*.cpp)
+add_executable(server ${SRC_SERVER_LIB})
 #target_link_libraries(net Threads::Threads)
 
 #Build client
-add_executable(client ${PROJECT_SOURCE_DIR}/src/client/tecli.cpp)
+file(GLOB_RECURSE SRC_CLIENT_LIB ${PROJECT_SOURCE_DIR}/src/client/*.cpp)
+add_executable(client ${SRC_CLIENT_LIB})

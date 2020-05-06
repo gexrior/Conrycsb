@@ -35,27 +35,30 @@ int BlockBitmap::getAvailableBlocks(uint64_t num, uint64_t *lists){
         return ERROR;
     }
     //boost::lock_guard<boost::detail::spinlock> lock(this->bits_lock_);
-    Debug::notifyError("MAX_ADD_NUM:%lu; Requetsed NUM:%lu",MAX_ADDR_NUM,num);
+//    Debug::notifyError("MAX_ADD_NUM:%lu; Requetsed NUM:%lu",MAX_ADDR_NUM,num);
     uint64_t count_ = 0;
     int pos = 0;
-    for(uint8_t i = 0; i < MAX_ADDR_NUM; i++){
+    int i = 0;
+    for(i = offset_; i < N; i++){
         if(!(bits_[i]^0xFF)){
             continue;
         }
         else{
             pos = 0;
-            Debug::notifyError("Acquire %u!\n",i);
+            char tmp = bits_[i];
+//            Debug::notifyError("Acquire %u!\n",i);
             while(pos < 8){
                 //??? if(!((bits_[i]<<pos)>>(7)){
-                if(!((bits_[i]<<pos)>>(7))){
+                if(!((tmp<<pos)>>(7))){
 //                    int tmp = ((bits_[i]<<pos)>>(7-pos))&1;
 //                    Debug::notifyError("%d",tmp);
-                    bits_[i] |= (1<<(7-pos));
+                    //bits_[i] |= (1<<(7-pos));
                     lists[count_] = i*8+pos;
                     this->set(lists[count_]);
                     count_++;
                     if(count_ == num){
                         //boost::lock_guard<boost::detail::spinlock> unlock(this->bits_lock_);
+                        offset_ = i+1;
                         return SUCCESS;
                     }
                 }
@@ -64,8 +67,9 @@ int BlockBitmap::getAvailableBlocks(uint64_t num, uint64_t *lists){
         }
     }
     if(count_ < num){
-        Debug::notifyError("Failed to allocate enough memory blocks! request: %lu; allocated: %lu",num,count_);
+//        Debug::notifyError("Failed to allocate enough memory blocks! request: %lu; allocated: %lu",num,count_);
         //boost::lock_guard<boost::detail::spinlock> unlock(this->bits_lock_);
+        offset_ = i+1;
         return ERROR;
 
     }

@@ -43,10 +43,10 @@ RM = /home/huangcc/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/huangcc/xurui/rdma613/rdma_demo_skiplist01
+CMAKE_SOURCE_DIR = /home/huangcc/huangcc/RDMA-Unified-Shared-Memory
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/huangcc/xurui/rdma613/rdma_demo_skiplist01
+CMAKE_BINARY_DIR = /home/huangcc/huangcc/RDMA-Unified-Shared-Memory
 
 # Include any dependencies generated for this target.
 include CMakeFiles/client.dir/depend.make
@@ -57,32 +57,62 @@ include CMakeFiles/client.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/client.dir/flags.make
 
+CMakeFiles/client.dir/src/client/client.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/src/client/client.cpp.o: src/client/client.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/src/client/client.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client/client.cpp.o -c /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/client/client.cpp
+
+CMakeFiles/client.dir/src/client/client.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/client/client.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/client/client.cpp > CMakeFiles/client.dir/src/client/client.cpp.i
+
+CMakeFiles/client.dir/src/client/client.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/client/client.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/client/client.cpp -o CMakeFiles/client.dir/src/client/client.cpp.s
+
 CMakeFiles/client.dir/src/client/tecli.cpp.o: CMakeFiles/client.dir/flags.make
 CMakeFiles/client.dir/src/client/tecli.cpp.o: src/client/tecli.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huangcc/xurui/rdma613/rdma_demo_skiplist01/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/client.dir/src/client/tecli.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client/tecli.cpp.o -c /home/huangcc/xurui/rdma613/rdma_demo_skiplist01/src/client/tecli.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/client.dir/src/client/tecli.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client/tecli.cpp.o -c /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/client/tecli.cpp
 
 CMakeFiles/client.dir/src/client/tecli.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/client/tecli.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huangcc/xurui/rdma613/rdma_demo_skiplist01/src/client/tecli.cpp > CMakeFiles/client.dir/src/client/tecli.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/client/tecli.cpp > CMakeFiles/client.dir/src/client/tecli.cpp.i
 
 CMakeFiles/client.dir/src/client/tecli.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/client/tecli.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huangcc/xurui/rdma613/rdma_demo_skiplist01/src/client/tecli.cpp -o CMakeFiles/client.dir/src/client/tecli.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/client/tecli.cpp -o CMakeFiles/client.dir/src/client/tecli.cpp.s
+
+CMakeFiles/client.dir/src/client/ycsb_wl.cpp.o: CMakeFiles/client.dir/flags.make
+CMakeFiles/client.dir/src/client/ycsb_wl.cpp.o: src/client/ycsb_wl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/client.dir/src/client/ycsb_wl.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/client.dir/src/client/ycsb_wl.cpp.o -c /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/client/ycsb_wl.cpp
+
+CMakeFiles/client.dir/src/client/ycsb_wl.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/client.dir/src/client/ycsb_wl.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/client/ycsb_wl.cpp > CMakeFiles/client.dir/src/client/ycsb_wl.cpp.i
+
+CMakeFiles/client.dir/src/client/ycsb_wl.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/client.dir/src/client/ycsb_wl.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/client/ycsb_wl.cpp -o CMakeFiles/client.dir/src/client/ycsb_wl.cpp.s
 
 # Object files for target client
 client_OBJECTS = \
-"CMakeFiles/client.dir/src/client/tecli.cpp.o"
+"CMakeFiles/client.dir/src/client/client.cpp.o" \
+"CMakeFiles/client.dir/src/client/tecli.cpp.o" \
+"CMakeFiles/client.dir/src/client/ycsb_wl.cpp.o"
 
 # External object files for target client
 client_EXTERNAL_OBJECTS =
 
+client: CMakeFiles/client.dir/src/client/client.cpp.o
 client: CMakeFiles/client.dir/src/client/tecli.cpp.o
+client: CMakeFiles/client.dir/src/client/ycsb_wl.cpp.o
 client: CMakeFiles/client.dir/build.make
-client: libindex.so
+client: libbenchmark.so
 client: libnet.so
 client: CMakeFiles/client.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/huangcc/xurui/rdma613/rdma_demo_skiplist01/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable client"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable client"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/client.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -95,6 +125,6 @@ CMakeFiles/client.dir/clean:
 .PHONY : CMakeFiles/client.dir/clean
 
 CMakeFiles/client.dir/depend:
-	cd /home/huangcc/xurui/rdma613/rdma_demo_skiplist01 && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/huangcc/xurui/rdma613/rdma_demo_skiplist01 /home/huangcc/xurui/rdma613/rdma_demo_skiplist01 /home/huangcc/xurui/rdma613/rdma_demo_skiplist01 /home/huangcc/xurui/rdma613/rdma_demo_skiplist01 /home/huangcc/xurui/rdma613/rdma_demo_skiplist01/CMakeFiles/client.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/huangcc/huangcc/RDMA-Unified-Shared-Memory && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/huangcc/huangcc/RDMA-Unified-Shared-Memory /home/huangcc/huangcc/RDMA-Unified-Shared-Memory /home/huangcc/huangcc/RDMA-Unified-Shared-Memory /home/huangcc/huangcc/RDMA-Unified-Shared-Memory /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/CMakeFiles/client.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/client.dir/depend
 

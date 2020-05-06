@@ -6,9 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/huangcc/xurui/rdma613/rdma_demo_skiplist01/src/server/teser.cpp
+/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/server/sc_skiplist.cpp
+sc_skiplist.h
+/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/server/sc_skiplist.h
+
+/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/server/server.cpp
 server.h
-/home/huangcc/xurui/rdma613/rdma_demo_skiplist01/src/server/server.h
+/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/server/server.h
+
+/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/server/skiplist.cpp
+skiplist.h
+/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/server/skiplist.h
+
+/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/server/teser.cpp
+server.h
+/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/src/server/server.h
 
 include/BlockBitmap.h
 memory.h
@@ -96,18 +108,6 @@ include/debug.hpp
 global.h
 include/global.h
 
-include/client.h
-thread
--
-RdmaSocket.hpp
-include/RdmaSocket.hpp
-Configuration.hpp
-include/Configuration.hpp
-MemoryManager.h
-include/MemoryManager.h
-global.h
-include/global.h
-
 include/common.hpp
 stdint.h
 -
@@ -124,6 +124,8 @@ sys/time.h
 
 include/global.h
 stdint.h
+-
+stdlib.h
 -
 vector
 -
@@ -167,8 +169,6 @@ RdmaSocket.hpp
 include/RdmaSocket.hpp
 Configuration.hpp
 include/Configuration.hpp
-client.h
-include/client.h
 MemoryManager.h
 include/MemoryManager.h
 global.h
@@ -190,5 +190,7 @@ vector
 stdlib.h
 -
 malloc.h
+-
+common.hpp
 -
 

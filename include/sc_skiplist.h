@@ -37,11 +37,19 @@ struct Key
     bool operator < (const Key &y)
     {
         return (strcmp(start_key,y.start_key)<0);
+//        int64_t* a = (int64_t*)start_key;
+//        int64_t* b = (int64_t*)y.start_key;
+//        cout<<*a<<";"<<*b<<endl;
+//        return *a<*b;
     }
 
     bool operator == (const Key &y)
     {
         return (strcmp(start_key,y.start_key)==0);
+//        int64_t* a = (int64_t*)start_key;
+//        int64_t* b = (int64_t*)y.start_key;
+//        cout<<*a<<";"<<*b<<endl;
+//        return *a==*b;
     }
 
     void print()

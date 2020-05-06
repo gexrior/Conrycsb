@@ -6,5 +6,5 @@ CXX_FLAGS = -g -Wall -Wno-deprecated-declarations -Wsign-compare -std=c++11 -pth
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/huangcc/xurui/rdma613/rdma_demo_skiplist01/./rdma_demo/include -I/home/huangcc/xurui/rdma613/rdma_demo_skiplist01/include 
+CXX_INCLUDES = -I/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/./rdma_demo/include -I/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/include 
 

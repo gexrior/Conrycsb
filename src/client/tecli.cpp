@@ -1,11 +1,13 @@
 
 #include "client.h"
-
+#include "ycsb.h"
 
 int main()
 {
 
     Client *client = new Client();
+    ycsb_wl *wl = new ycsb_wl();
+    wl->init(client);
 //    uint64_t DmfsDataOffset;
 //    DmfsDataOffset =  CLIENT_MESSAGE_SIZE * MAX_CLIENT_NUMBER;
 //    DmfsDataOffset += SERVER_MASSAGE_SIZE * SERVER_MASSAGE_NUM * client->getConfInstance()->getServerCount();
@@ -15,39 +17,66 @@ int main()
     memset(value,0,BLOCK_SIZE);
 
     //2.write value
-    char alphavalue[BLOCK_SIZE];
-    memset(alphavalue,'b',BLOCK_SIZE);
+//    char alphavalue[BLOCK_SIZE];
+//    memset(alphavalue,'b',BLOCK_SIZE);
     //printf("Read:%s\n",alphavalue);
     //memcpy((void *)SendPoolAddr, (void *)(alphavalue), BLOCK_SIZE);
-    char start_key[KEY_LENGTH];
-    char end_key[KEY_LENGTH];
-    int* start = (int*)(start_key);
-    int* end = (int*)(end_key);
+//    char start_key[KEY_LENGTH];
+//    char end_key[KEY_LENGTH];
+//    int64_t* start = (int64_t*)(start_key);
+//    int64_t* end = (int64_t*)(end_key);
+    
+	delete client;
+//    for(int i=0; i<1;i=i+5)
+//    {
+//        *start = i;
+//        *end = i+5;
+//        printf("start_key：%s ",start_key);
+//        printf("end_key：%s ",end_key);
+//        client->Write((uint64_t)alphavalue,BLOCK_SIZE,start_key,end_key);
+////        printf("write %d end!\n",i);
+//    }
 
-    for(int i=0; i<5;i++)
-    {
-        *start = i;
-        *end = i+5;
-        printf("start_key：%s ",start_key);
-        printf("end_key：%s ",end_key);
-        client->Write((uint64_t)alphavalue,BLOCK_SIZE,start_key,end_key);
-    }
+//    //for(int i=0; i<10; i++)
+//    //{
+//    printf("read start!\n");
+//        for(int i=0; i<1;i++)
+//        {
+//            *start = 1;
+//            *end = 4 ;
+//            client->Read((uint64_t)value,BLOCK_SIZE,start_key,end_key);
+//        }
+//    //}
+//    for(int i=0; i<5;i++)
+//        {
+//            *start = i;
+//            *end = i+5;
+//            printf("start_key：%s ",start_key);
+//            printf("end_key：%s ",end_key);
+//            client->Write((uint64_t)alphavalue,BLOCK_SIZE,start_key,end_key);
+//        }
 
-    //for(int i=0; i<10; i++)
-    //{
-        for(int i=0; i<3;i++)
-        {
-            *start = i;
-            *end = i+5;
-            client->Read((uint64_t)value,BLOCK_SIZE,start_key,end_key);
-        }
-    //}
 
-    printf("value:\n");
-    for(int i=0; i<BLOCK_SIZE; i++)
-    {
-        printf("%c",value[i]);
-    }
+//    timeval start_time, end_time;
+//    gettimeofday(&start_time,NULL);
+//    for(int i=0; i<1000;i++)
+//    {
+////        *start = 101;
+////        *end = 120;
+//        *start = 4860001;
+//        *end = 4860081;
+//        client->Read((uint64_t)value,BLOCK_SIZE,start_key,end_key);
+//    }
+//    gettimeofday(&end_time,NULL);
+//    cout<<end_time.tv_sec-start_time.tv_sec<<"s,"<<end_time.tv_usec-start_time.tv_usec<<"us"<<endl;
+
+
+
+//    printf("value:\n");
+//    for(int i=0; i<BLOCK_SIZE; i++)
+//    {
+//        printf("%c",value[i]);
+//    }
 
 /*    uint64_t address = client->BlockWrite(SendPoolAddr,size,-1,0,1);
 

@@ -6,7 +6,7 @@
 #include <vector>
 #include "RdmaSocket.hpp"
 #include "Configuration.hpp"
-#include "client.h"
+//#include "client.h"
 #include "MemoryManager.h"
 #include "global.h"
 #include "common.hpp"
@@ -33,7 +33,7 @@ private:
     RdmaSocket *socket;
     MemoryManager *mem;
     uint64_t mm;
-    Client *client;
+//    Client *client;
     int ServerCount;
     int cqSize;
     Thread2ID th2id;
@@ -56,7 +56,7 @@ public:
     Server(int cqSize);
     RdmaSocket* getRdmaSocketInstance();
     MemoryManager* getMemoryManagerInstance();
-    Client* getRPCClientInstance();
+//    Client* getRPCClientInstance();
     uint64_t ContractReceiveBuffer(GeneralSendBuffer *send, GeneralReceiveBuffer *recv);
     void RequestPoller(int id);
     int getIDbyTID();

@@ -48,24 +48,13 @@ RM = /home/huangcc/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/huangcc/xurui/rdma613/rdma_demo_skiplist01
+CMAKE_SOURCE_DIR = /home/huangcc/huangcc/RDMA-Unified-Shared-Memory
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/huangcc/xurui/rdma613/rdma_demo_skiplist01
+CMAKE_BINARY_DIR = /home/huangcc/huangcc/RDMA-Unified-Shared-Memory
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/home/huangcc/cmake/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -78,11 +67,22 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/home/huangcc/cmake/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/huangcc/xurui/rdma613/rdma_demo_skiplist01/CMakeFiles /home/huangcc/xurui/rdma613/rdma_demo_skiplist01/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/CMakeFiles /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/huangcc/xurui/rdma613/rdma_demo_skiplist01/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/huangcc/huangcc/RDMA-Unified-Shared-Memory/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -137,17 +137,17 @@ server/fast:
 .PHONY : server/fast
 
 #=============================================================================
-# Target rules for targets named index
+# Target rules for targets named benchmark
 
 # Build rule for target.
-index: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 index
-.PHONY : index
+benchmark: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 benchmark
+.PHONY : benchmark
 
 # fast build rule for target.
-index/fast:
-	$(MAKE) -f CMakeFiles/index.dir/build.make CMakeFiles/index.dir/build
-.PHONY : index/fast
+benchmark/fast:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/build
+.PHONY : benchmark/fast
 
 #=============================================================================
 # Target rules for targets named net
@@ -161,6 +161,168 @@ net: cmake_check_build_system
 net/fast:
 	$(MAKE) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/build
 .PHONY : net/fast
+
+src/benchmark/catalog.o: src/benchmark/catalog.cpp.o
+
+.PHONY : src/benchmark/catalog.o
+
+# target to build an object file
+src/benchmark/catalog.cpp.o:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/catalog.cpp.o
+.PHONY : src/benchmark/catalog.cpp.o
+
+src/benchmark/catalog.i: src/benchmark/catalog.cpp.i
+
+.PHONY : src/benchmark/catalog.i
+
+# target to preprocess a source file
+src/benchmark/catalog.cpp.i:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/catalog.cpp.i
+.PHONY : src/benchmark/catalog.cpp.i
+
+src/benchmark/catalog.s: src/benchmark/catalog.cpp.s
+
+.PHONY : src/benchmark/catalog.s
+
+# target to generate assembly for a file
+src/benchmark/catalog.cpp.s:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/catalog.cpp.s
+.PHONY : src/benchmark/catalog.cpp.s
+
+src/benchmark/helper.o: src/benchmark/helper.cpp.o
+
+.PHONY : src/benchmark/helper.o
+
+# target to build an object file
+src/benchmark/helper.cpp.o:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/helper.cpp.o
+.PHONY : src/benchmark/helper.cpp.o
+
+src/benchmark/helper.i: src/benchmark/helper.cpp.i
+
+.PHONY : src/benchmark/helper.i
+
+# target to preprocess a source file
+src/benchmark/helper.cpp.i:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/helper.cpp.i
+.PHONY : src/benchmark/helper.cpp.i
+
+src/benchmark/helper.s: src/benchmark/helper.cpp.s
+
+.PHONY : src/benchmark/helper.s
+
+# target to generate assembly for a file
+src/benchmark/helper.cpp.s:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/helper.cpp.s
+.PHONY : src/benchmark/helper.cpp.s
+
+src/benchmark/row.o: src/benchmark/row.cpp.o
+
+.PHONY : src/benchmark/row.o
+
+# target to build an object file
+src/benchmark/row.cpp.o:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/row.cpp.o
+.PHONY : src/benchmark/row.cpp.o
+
+src/benchmark/row.i: src/benchmark/row.cpp.i
+
+.PHONY : src/benchmark/row.i
+
+# target to preprocess a source file
+src/benchmark/row.cpp.i:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/row.cpp.i
+.PHONY : src/benchmark/row.cpp.i
+
+src/benchmark/row.s: src/benchmark/row.cpp.s
+
+.PHONY : src/benchmark/row.s
+
+# target to generate assembly for a file
+src/benchmark/row.cpp.s:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/row.cpp.s
+.PHONY : src/benchmark/row.cpp.s
+
+src/benchmark/table.o: src/benchmark/table.cpp.o
+
+.PHONY : src/benchmark/table.o
+
+# target to build an object file
+src/benchmark/table.cpp.o:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/table.cpp.o
+.PHONY : src/benchmark/table.cpp.o
+
+src/benchmark/table.i: src/benchmark/table.cpp.i
+
+.PHONY : src/benchmark/table.i
+
+# target to preprocess a source file
+src/benchmark/table.cpp.i:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/table.cpp.i
+.PHONY : src/benchmark/table.cpp.i
+
+src/benchmark/table.s: src/benchmark/table.cpp.s
+
+.PHONY : src/benchmark/table.s
+
+# target to generate assembly for a file
+src/benchmark/table.cpp.s:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/table.cpp.s
+.PHONY : src/benchmark/table.cpp.s
+
+src/benchmark/ycsb_global.o: src/benchmark/ycsb_global.cpp.o
+
+.PHONY : src/benchmark/ycsb_global.o
+
+# target to build an object file
+src/benchmark/ycsb_global.cpp.o:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/ycsb_global.cpp.o
+.PHONY : src/benchmark/ycsb_global.cpp.o
+
+src/benchmark/ycsb_global.i: src/benchmark/ycsb_global.cpp.i
+
+.PHONY : src/benchmark/ycsb_global.i
+
+# target to preprocess a source file
+src/benchmark/ycsb_global.cpp.i:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/ycsb_global.cpp.i
+.PHONY : src/benchmark/ycsb_global.cpp.i
+
+src/benchmark/ycsb_global.s: src/benchmark/ycsb_global.cpp.s
+
+.PHONY : src/benchmark/ycsb_global.s
+
+# target to generate assembly for a file
+src/benchmark/ycsb_global.cpp.s:
+	$(MAKE) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark/ycsb_global.cpp.s
+.PHONY : src/benchmark/ycsb_global.cpp.s
+
+src/client/client.o: src/client/client.cpp.o
+
+.PHONY : src/client/client.o
+
+# target to build an object file
+src/client/client.cpp.o:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client/client.cpp.o
+.PHONY : src/client/client.cpp.o
+
+src/client/client.i: src/client/client.cpp.i
+
+.PHONY : src/client/client.i
+
+# target to preprocess a source file
+src/client/client.cpp.i:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client/client.cpp.i
+.PHONY : src/client/client.cpp.i
+
+src/client/client.s: src/client/client.cpp.s
+
+.PHONY : src/client/client.s
+
+# target to generate assembly for a file
+src/client/client.cpp.s:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client/client.cpp.s
+.PHONY : src/client/client.cpp.s
 
 src/client/tecli.o: src/client/tecli.cpp.o
 
@@ -189,59 +351,32 @@ src/client/tecli.cpp.s:
 	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client/tecli.cpp.s
 .PHONY : src/client/tecli.cpp.s
 
-src/index/sc_skiplist.o: src/index/sc_skiplist.cpp.o
+src/client/ycsb_wl.o: src/client/ycsb_wl.cpp.o
 
-.PHONY : src/index/sc_skiplist.o
-
-# target to build an object file
-src/index/sc_skiplist.cpp.o:
-	$(MAKE) -f CMakeFiles/index.dir/build.make CMakeFiles/index.dir/src/index/sc_skiplist.cpp.o
-.PHONY : src/index/sc_skiplist.cpp.o
-
-src/index/sc_skiplist.i: src/index/sc_skiplist.cpp.i
-
-.PHONY : src/index/sc_skiplist.i
-
-# target to preprocess a source file
-src/index/sc_skiplist.cpp.i:
-	$(MAKE) -f CMakeFiles/index.dir/build.make CMakeFiles/index.dir/src/index/sc_skiplist.cpp.i
-.PHONY : src/index/sc_skiplist.cpp.i
-
-src/index/sc_skiplist.s: src/index/sc_skiplist.cpp.s
-
-.PHONY : src/index/sc_skiplist.s
-
-# target to generate assembly for a file
-src/index/sc_skiplist.cpp.s:
-	$(MAKE) -f CMakeFiles/index.dir/build.make CMakeFiles/index.dir/src/index/sc_skiplist.cpp.s
-.PHONY : src/index/sc_skiplist.cpp.s
-
-src/index/skiplist.o: src/index/skiplist.cpp.o
-
-.PHONY : src/index/skiplist.o
+.PHONY : src/client/ycsb_wl.o
 
 # target to build an object file
-src/index/skiplist.cpp.o:
-	$(MAKE) -f CMakeFiles/index.dir/build.make CMakeFiles/index.dir/src/index/skiplist.cpp.o
-.PHONY : src/index/skiplist.cpp.o
+src/client/ycsb_wl.cpp.o:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client/ycsb_wl.cpp.o
+.PHONY : src/client/ycsb_wl.cpp.o
 
-src/index/skiplist.i: src/index/skiplist.cpp.i
+src/client/ycsb_wl.i: src/client/ycsb_wl.cpp.i
 
-.PHONY : src/index/skiplist.i
+.PHONY : src/client/ycsb_wl.i
 
 # target to preprocess a source file
-src/index/skiplist.cpp.i:
-	$(MAKE) -f CMakeFiles/index.dir/build.make CMakeFiles/index.dir/src/index/skiplist.cpp.i
-.PHONY : src/index/skiplist.cpp.i
+src/client/ycsb_wl.cpp.i:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client/ycsb_wl.cpp.i
+.PHONY : src/client/ycsb_wl.cpp.i
 
-src/index/skiplist.s: src/index/skiplist.cpp.s
+src/client/ycsb_wl.s: src/client/ycsb_wl.cpp.s
 
-.PHONY : src/index/skiplist.s
+.PHONY : src/client/ycsb_wl.s
 
 # target to generate assembly for a file
-src/index/skiplist.cpp.s:
-	$(MAKE) -f CMakeFiles/index.dir/build.make CMakeFiles/index.dir/src/index/skiplist.cpp.s
-.PHONY : src/index/skiplist.cpp.s
+src/client/ycsb_wl.cpp.s:
+	$(MAKE) -f CMakeFiles/client.dir/build.make CMakeFiles/client.dir/src/client/ycsb_wl.cpp.s
+.PHONY : src/client/ycsb_wl.cpp.s
 
 src/net/BlockBitmap.o: src/net/BlockBitmap.cpp.o
 
@@ -351,33 +486,6 @@ src/net/RdmaSocket.cpp.s:
 	$(MAKE) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/src/net/RdmaSocket.cpp.s
 .PHONY : src/net/RdmaSocket.cpp.s
 
-src/net/client.o: src/net/client.cpp.o
-
-.PHONY : src/net/client.o
-
-# target to build an object file
-src/net/client.cpp.o:
-	$(MAKE) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/src/net/client.cpp.o
-.PHONY : src/net/client.cpp.o
-
-src/net/client.i: src/net/client.cpp.i
-
-.PHONY : src/net/client.i
-
-# target to preprocess a source file
-src/net/client.cpp.i:
-	$(MAKE) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/src/net/client.cpp.i
-.PHONY : src/net/client.cpp.i
-
-src/net/client.s: src/net/client.cpp.s
-
-.PHONY : src/net/client.s
-
-# target to generate assembly for a file
-src/net/client.cpp.s:
-	$(MAKE) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/src/net/client.cpp.s
-.PHONY : src/net/client.cpp.s
-
 src/net/debug.o: src/net/debug.cpp.o
 
 .PHONY : src/net/debug.o
@@ -405,32 +513,86 @@ src/net/debug.cpp.s:
 	$(MAKE) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/src/net/debug.cpp.s
 .PHONY : src/net/debug.cpp.s
 
-src/net/server.o: src/net/server.cpp.o
+src/server/sc_skiplist.o: src/server/sc_skiplist.cpp.o
 
-.PHONY : src/net/server.o
+.PHONY : src/server/sc_skiplist.o
 
 # target to build an object file
-src/net/server.cpp.o:
-	$(MAKE) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/src/net/server.cpp.o
-.PHONY : src/net/server.cpp.o
+src/server/sc_skiplist.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/sc_skiplist.cpp.o
+.PHONY : src/server/sc_skiplist.cpp.o
 
-src/net/server.i: src/net/server.cpp.i
+src/server/sc_skiplist.i: src/server/sc_skiplist.cpp.i
 
-.PHONY : src/net/server.i
+.PHONY : src/server/sc_skiplist.i
 
 # target to preprocess a source file
-src/net/server.cpp.i:
-	$(MAKE) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/src/net/server.cpp.i
-.PHONY : src/net/server.cpp.i
+src/server/sc_skiplist.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/sc_skiplist.cpp.i
+.PHONY : src/server/sc_skiplist.cpp.i
 
-src/net/server.s: src/net/server.cpp.s
+src/server/sc_skiplist.s: src/server/sc_skiplist.cpp.s
 
-.PHONY : src/net/server.s
+.PHONY : src/server/sc_skiplist.s
 
 # target to generate assembly for a file
-src/net/server.cpp.s:
-	$(MAKE) -f CMakeFiles/net.dir/build.make CMakeFiles/net.dir/src/net/server.cpp.s
-.PHONY : src/net/server.cpp.s
+src/server/sc_skiplist.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/sc_skiplist.cpp.s
+.PHONY : src/server/sc_skiplist.cpp.s
+
+src/server/server.o: src/server/server.cpp.o
+
+.PHONY : src/server/server.o
+
+# target to build an object file
+src/server/server.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/server.cpp.o
+.PHONY : src/server/server.cpp.o
+
+src/server/server.i: src/server/server.cpp.i
+
+.PHONY : src/server/server.i
+
+# target to preprocess a source file
+src/server/server.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/server.cpp.i
+.PHONY : src/server/server.cpp.i
+
+src/server/server.s: src/server/server.cpp.s
+
+.PHONY : src/server/server.s
+
+# target to generate assembly for a file
+src/server/server.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/server.cpp.s
+.PHONY : src/server/server.cpp.s
+
+src/server/skiplist.o: src/server/skiplist.cpp.o
+
+.PHONY : src/server/skiplist.o
+
+# target to build an object file
+src/server/skiplist.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/skiplist.cpp.o
+.PHONY : src/server/skiplist.cpp.o
+
+src/server/skiplist.i: src/server/skiplist.cpp.i
+
+.PHONY : src/server/skiplist.i
+
+# target to preprocess a source file
+src/server/skiplist.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/skiplist.cpp.i
+.PHONY : src/server/skiplist.cpp.i
+
+src/server/skiplist.s: src/server/skiplist.cpp.s
+
+.PHONY : src/server/skiplist.s
+
+# target to generate assembly for a file
+src/server/skiplist.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/server/skiplist.cpp.s
+.PHONY : src/server/skiplist.cpp.s
 
 src/server/teser.o: src/server/teser.cpp.o
 
@@ -465,21 +627,36 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... client"
 	@echo "... server"
-	@echo "... rebuild_cache"
-	@echo "... index"
+	@echo "... benchmark"
 	@echo "... net"
+	@echo "... src/benchmark/catalog.o"
+	@echo "... src/benchmark/catalog.i"
+	@echo "... src/benchmark/catalog.s"
+	@echo "... src/benchmark/helper.o"
+	@echo "... src/benchmark/helper.i"
+	@echo "... src/benchmark/helper.s"
+	@echo "... src/benchmark/row.o"
+	@echo "... src/benchmark/row.i"
+	@echo "... src/benchmark/row.s"
+	@echo "... src/benchmark/table.o"
+	@echo "... src/benchmark/table.i"
+	@echo "... src/benchmark/table.s"
+	@echo "... src/benchmark/ycsb_global.o"
+	@echo "... src/benchmark/ycsb_global.i"
+	@echo "... src/benchmark/ycsb_global.s"
+	@echo "... src/client/client.o"
+	@echo "... src/client/client.i"
+	@echo "... src/client/client.s"
 	@echo "... src/client/tecli.o"
 	@echo "... src/client/tecli.i"
 	@echo "... src/client/tecli.s"
-	@echo "... src/index/sc_skiplist.o"
-	@echo "... src/index/sc_skiplist.i"
-	@echo "... src/index/sc_skiplist.s"
-	@echo "... src/index/skiplist.o"
-	@echo "... src/index/skiplist.i"
-	@echo "... src/index/skiplist.s"
+	@echo "... src/client/ycsb_wl.o"
+	@echo "... src/client/ycsb_wl.i"
+	@echo "... src/client/ycsb_wl.s"
 	@echo "... src/net/BlockBitmap.o"
 	@echo "... src/net/BlockBitmap.i"
 	@echo "... src/net/BlockBitmap.s"
@@ -492,15 +669,18 @@ help:
 	@echo "... src/net/RdmaSocket.o"
 	@echo "... src/net/RdmaSocket.i"
 	@echo "... src/net/RdmaSocket.s"
-	@echo "... src/net/client.o"
-	@echo "... src/net/client.i"
-	@echo "... src/net/client.s"
 	@echo "... src/net/debug.o"
 	@echo "... src/net/debug.i"
 	@echo "... src/net/debug.s"
-	@echo "... src/net/server.o"
-	@echo "... src/net/server.i"
-	@echo "... src/net/server.s"
+	@echo "... src/server/sc_skiplist.o"
+	@echo "... src/server/sc_skiplist.i"
+	@echo "... src/server/sc_skiplist.s"
+	@echo "... src/server/server.o"
+	@echo "... src/server/server.i"
+	@echo "... src/server/server.s"
+	@echo "... src/server/skiplist.o"
+	@echo "... src/server/skiplist.i"
+	@echo "... src/server/skiplist.s"
 	@echo "... src/server/teser.o"
 	@echo "... src/server/teser.i"
 	@echo "... src/server/teser.s"

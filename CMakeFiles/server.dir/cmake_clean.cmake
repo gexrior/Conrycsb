@@ -1,4 +1,7 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/server.dir/src/server/sc_skiplist.cpp.o"
+  "CMakeFiles/server.dir/src/server/server.cpp.o"
+  "CMakeFiles/server.dir/src/server/skiplist.cpp.o"
   "CMakeFiles/server.dir/src/server/teser.cpp.o"
   "server.pdb"
   "server"

@@ -1,4 +1,4 @@
-# Install script for directory: /home/huangcc/xurui/rdma613/rdma_demo_skiplist01
+# Install script for directory: /home/huangcc/huangcc/RDMA-Unified-Shared-Memory
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/huangcc/xurui/rdma613/rdma_demo_skiplist01/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/huangcc/huangcc/RDMA-Unified-Shared-Memory/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -40,9 +40,11 @@ mm(_mm), mmSize(_mmSize), conf(_conf), MaxNodeID(1), Mode(_Mode) {
             ReadTimeCost[i] = 0;
         }
         WriteTest = false;
-        for (int i = 0; i < WORKER_NUMBER; i ++) {
-            worker[i] = thread(&RdmaSocket::DataTransferWorker, this, i);
-        }
+        //delete huangcc 20191129
+//        for (int i = 0; i < WORKER_NUMBER; i ++) {
+//            worker[i] = thread(&RdmaSocket::DataTransferWorker, this, i);
+//        }
+        //delete
     }
 }
 
@@ -52,9 +54,9 @@ RdmaSocket::~RdmaSocket() {
         Debug::debugItem("1");
         Listener.detach();
     } else {
-        for (int i = 0; i < WORKER_NUMBER; i++) {
-            worker[i].detach();
-        }
+//        for (int i = 0; i < WORKER_NUMBER; i++) {
+//            worker[i].detach();
+//        }
     }
     Debug::debugItem("2");
     ResourcesDestroy();
@@ -807,7 +809,7 @@ bool RdmaSocket::_RdmaBatchReceive(uint16_t NodeID, uint64_t SourceBuffer, uint6
 
 bool RdmaSocket::RdmaRead(uint16_t NodeID, uint64_t SourceBuffer, uint64_t DesBuffer, uint64_t BufferSize, int TaskID) {
     //assert(peers[NodeID]);
-    Debug::notifyError("RdmaRead()");
+//    Debug::notifyError("RdmaRead()");
     struct ibv_sge sg;
     struct ibv_send_wr wr;
     struct ibv_send_wr *wrBad;
@@ -905,7 +907,7 @@ bool RdmaSocket::DataTransferWorker(int id) {
 }
 
 bool RdmaSocket::InboundHamal(int TaskID, uint64_t bufferSend, uint16_t NodeID, uint64_t bufferReceive, uint64_t size) {
-    uint64_t SendPoolSize = 1024 * 1024;
+    uint64_t SendPoolSize = 2 * 1024;
     uint64_t SendPoolAddr = mm + 4 * 1024 + TaskID * 1024 * 1024;
     uint64_t TotalSizeSend = 0;
     uint64_t SendSize;
@@ -922,7 +924,7 @@ bool RdmaSocket::InboundHamal(int TaskID, uint64_t bufferSend, uint16_t NodeID, 
         gettimeofday(&start, NULL);
         RdmaRead(NodeID, SendPoolAddr, bufferReceive + TotalSizeSend, SendSize, TaskID + 1);
         PollCompletion(NodeID, 1, &wc);
-        cout<<"send_size"<<SendSize<<endl;
+//        cout<<"send_size"<<SendSize<<endl;
         memcpy((void *)(bufferSend + TotalSizeSend), (void *)SendPoolAddr, SendSize);
         gettimeofday(&end, NULL);
         diff = 1000000 * (end.tv_sec - start.tv_sec) + end.tv_usec - start.tv_usec;
@@ -957,7 +959,7 @@ bool RdmaSocket::RdmaWrite(uint16_t NodeID, uint64_t SourceBuffer, uint64_t DesB
     }
     wr.send_flags = IBV_SEND_SIGNALED;
     wr.wr.rdma.remote_addr = DesBuffer; //+ peer->RegisteredMemory;
-    Debug::debugItem("Post RDMA_WRITE with remote address = %lx", wr.wr.rdma.remote_addr);
+//    Debug::debugItem("Post RDMA_WRITE with remote address = %lx", wr.wr.rdma.remote_addr);
     wr.wr.rdma.rkey        = peer->rkey;
     if (ibv_post_send(peer->qp[TaskID], &wr, &wrBad)) {
         Debug::notifyError("Send with RDMA_WRITE(WITH_IMM) failed.");
@@ -993,7 +995,7 @@ bool RdmaSocket::RemoteWrite(uint64_t bufferSend, uint16_t NodeID, uint64_t buff
 }
 
 bool RdmaSocket::OutboundHamal(int TaskID, uint64_t bufferSend, uint16_t NodeID, uint64_t bufferReceive, uint64_t size) {
-    uint64_t SendPoolSize = 1024 * 1024;
+    uint64_t SendPoolSize = 2 * 1024;
     uint64_t SendPoolAddr = mm + 4 * CLIENT_MESSAGE_SIZE + TaskID * 1024 * 1024;
     uint64_t TotalSizeSend = 0;
     uint64_t SendSize;
@@ -1033,7 +1035,7 @@ bool RdmaSocket::OutboundHamal(int TaskID, uint64_t bufferSend, uint16_t NodeID,
             printf("diff = %d, size = 10MB.\n", (int)diff);
             WriteTest = false;
         }
-        Debug::debugItem("Source Addr = %lx, Des Addr = %lx, Size = %d", SendPoolAddr, bufferReceive + TotalSizeSend, SendSize);
+//        Debug::debugItem("Source Addr = %lx, Des Addr = %lx, Size = %d", SendPoolAddr, bufferReceive + TotalSizeSend, SendSize);
         TotalSizeSend += SendSize;
     }
     __sync_fetch_and_add( &TransferSignal, 1 );
@@ -1075,7 +1077,7 @@ bool RdmaSocket::_RdmaBatchWrite(uint16_t NodeID, uint64_t SourceBuffer, uint64_
 
         //send_wr[w_i].send_flags |= IBV_SEND_INLINE;
         send_wr[w_i].wr.rdma.remote_addr = DesBuffer + peer->RegisteredMemory + w_i * 4096;
-        Debug::debugItem("remote address = %lx, Counter = %d, imm = %lx", send_wr[w_i].wr.rdma.remote_addr, peer->counter, imm);
+//        Debug::debugItem("remote address = %lx, Counter = %d, imm = %lx", send_wr[w_i].wr.rdma.remote_addr, peer->counter, imm);
         send_wr[w_i].wr.rdma.rkey        = peer->rkey;
         peer->counter += 1;
     }
@@ -1164,7 +1166,7 @@ int RdmaSocket::PollCompletion(uint16_t NodeID, int PollNumber, struct ibv_wc *w
             wc->status, (int)wc->wr_id);
         return -1;
     }
-    Debug::debugItem("Find New Completion Message");
+    //Debug::debugItem("Find New Completion Message");
     return count;
 }
 
@@ -1187,7 +1189,7 @@ int RdmaSocket::PollWithCQ(int cqPtr, int PollNumber, struct ibv_wc *wc) {
             wc->status, (int)wc->wr_id);
         return -1;
     }
-    Debug::debugItem("Find New Completion Message");
+//    Debug::debugItem("Find New Completion Message");
     return count;
 }
 
