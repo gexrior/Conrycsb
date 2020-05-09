@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-//#include <boost/smart_ptr/detail/spinlock.hpp>
+#include <boost/smart_ptr/detail/spinlock.hpp>
 
 
 class BlockBitmap {
@@ -21,7 +21,7 @@ private:
     char* bits_;
     int N;
     int offset_;
-    //boost::detail::spinlock bits_lock_;
+    boost::detail::spinlock bits_lock_;
 protected:
     void init(uint64_t n){
         N = n/8 + 1;

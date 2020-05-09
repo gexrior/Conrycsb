@@ -7,7 +7,7 @@
 #include "debug.hpp"
 #include "common.hpp"
 #include "iostream"
-//#include <boost/thread/lock_guard.hpp>
+#include <boost/thread/lock_guard.hpp>
 
 using namespace std;
 
@@ -34,8 +34,8 @@ int BlockBitmap::getAvailableBlocks(uint64_t num, uint64_t *lists){
         Debug::notifyError("The request block %lu exceeds the MAX_ADDR_NUM %lu",num,MAX_ADDR_NUM);
         return ERROR;
     }
-    //boost::lock_guard<boost::detail::spinlock> lock(this->bits_lock_);
-//    Debug::notifyError("MAX_ADD_NUM:%lu; Requetsed NUM:%lu",MAX_ADDR_NUM,num);
+    boost::lock_guard<boost::detail::spinlock> lock(this->bits_lock_);
+    Debug::notifyError("MAX_ADD_NUM:%lu; Requetsed NUM:%lu",MAX_ADDR_NUM,num);
     uint64_t count_ = 0;
     int pos = 0;
     int i = 0;
@@ -57,7 +57,7 @@ int BlockBitmap::getAvailableBlocks(uint64_t num, uint64_t *lists){
                     this->set(lists[count_]);
                     count_++;
                     if(count_ == num){
-                        //boost::lock_guard<boost::detail::spinlock> unlock(this->bits_lock_);
+                        boost::lock_guard<boost::detail::spinlock> unlock(this->bits_lock_);
                         offset_ = i+1;
                         return SUCCESS;
                     }
@@ -67,8 +67,8 @@ int BlockBitmap::getAvailableBlocks(uint64_t num, uint64_t *lists){
         }
     }
     if(count_ < num){
-//        Debug::notifyError("Failed to allocate enough memory blocks! request: %lu; allocated: %lu",num,count_);
-        //boost::lock_guard<boost::detail::spinlock> unlock(this->bits_lock_);
+        Debug::notifyError("Failed to allocate enough memory blocks! request: %lu; allocated: %lu",num,count_);
+        boost::lock_guard<boost::detail::spinlock> unlock(this->bits_lock_);
         offset_ = i+1;
         return ERROR;
 
