@@ -22,6 +22,20 @@ struct SkipListNode
     //add:e
     pair<KeyType,DataType> keyvalue;
     SkipListNode **next; //指向一个指针数组的指针
+    //add:xurui
+    atomic<int> rf_count;
+    bool mark;
+
+    int inc_ref()
+    {
+        return __sync_add_and_fetch(&rf_count, 1);
+    }
+    int dec_ref()
+    {
+        return __sync_sub_and_fetch(&rf_count, 1);
+    }
+
+    //add:e
 };
 
 
@@ -86,6 +100,10 @@ SkipListNode<KeyType,DataType>* SkipList<KeyType,DataType>::create_node(KeyValue
     {
         node->next[i]=NULL;
     }
+    //add:xurui
+    node->rf_count = 0;
+    node->mark =false;
+    //add:e
     return node;
 }
 
@@ -179,7 +197,13 @@ template<typename KeyType,typename DataType>
 SkipListNode<KeyType,DataType>* SkipList<KeyType,DataType>::Find(KeyType key) const
 {
     Node* pre=head_;
+
+    pre->inc_ref();
+    //add:e
     Node* curr=head_->next[level_-1];
+
+    curr->inc_ref();
+    //add:e
     for(int i=level_-1;i>=0;i--)
     {
         while(curr!=NULL)
@@ -187,17 +211,37 @@ SkipListNode<KeyType,DataType>* SkipList<KeyType,DataType>::Find(KeyType key) co
             if(curr->keyvalue.first<key)
             {
 //                printf("node->next[i]->keyvalue.first<key;\n");
+
+                pre->dec_ref();
+                //add:e
                 pre = curr;
+                //curr->dec_ref();
                 curr=curr->next[i];
             }
             else if(curr->keyvalue.first==key)
             {
+                pre->dec_ref();
+                if(curr->mark == false)
+                {
+                    return curr;
+                }
+                else //node has been deleted
+                {
+                    curr->dec_ref();
+                    return NULL;
+                }
+                //add:e
+
 //                printf("node->next[i]->keyvalue.first==key;\n");
-                return curr;
+//                return curr;
             }
             else
             {
+
+                curr->dec_ref();
+                //add:e
                 curr=pre->next[i-1];
+
 //                printf("break;\n");
                 break;
             }
@@ -205,9 +249,15 @@ SkipListNode<KeyType,DataType>* SkipList<KeyType,DataType>::Find(KeyType key) co
 
         if(curr == NULL && i-1>=0)
         {
+
+            curr->dec_ref();
+            //add:e
             curr == pre->next[i-1];
         }
     }
+
+    pre->dec_ref();
+    //add:e
 
     return NULL;
 }
@@ -260,7 +310,11 @@ template<typename KeyType,typename DataType>
 bool SkipList<KeyType,DataType>::Insert(const KeyValue& value)
 {
     Node* pre=head_;
+    pre->inc_ref();
+    //add:e
     Node* curr=head_->next[level_-1];
+    curr->inc_ref();
+    //add:e
     Node* update[MAXLEVEL];
     //1.find previous node
     for(int i=level_-1;i>=0;i--)
@@ -269,16 +323,27 @@ bool SkipList<KeyType,DataType>::Insert(const KeyValue& value)
         {
             if(curr->keyvalue.first < value.first)
             {
+
+                pre->dec_ref();
+                //add:e
                 pre = curr;
+                //curr->dec_ref();
                 curr=curr->next[i];
             }
             else if(curr->keyvalue.first == value.first)
             {
                 cout<<"we had this key."<<endl;
+                //add:xurui
+                pre->dec_ref();
+                curr->dec_ref();
+                //add:e
                 return false;
             }
             else
             {
+
+                curr->dec_ref();
+                //add:e
                 curr= pre->next[i-1];
                 break;
             }
@@ -286,11 +351,18 @@ bool SkipList<KeyType,DataType>::Insert(const KeyValue& value)
 
         if(curr == NULL && i-1>=0)
         {
+
+            curr->dec_ref();
+            //add:e
             curr == pre->next[i-1];
         }
 
         update[i]=pre;
     }
+
+    pre->dec_ref();
+    //add:e
+
     int newlevel=getRandomLevel();
 //    printf("newlevel=%d\n",newlevel);
     if(newlevel>level_)
@@ -354,7 +426,13 @@ template<typename KeyType,typename DataType>
 SkipListNode<KeyType,DataType>* SkipList<KeyType,DataType>::Get(KeyType key) const
 {
     Node* pre=head_;
+
+    pre->inc_ref();
+    //add:e
     Node* curr=head_->next[level_-1];
+
+    curr->inc_ref();
+    //add:e
     for(int i=level_-1;i>=0;i--)
     {
         while(curr!=NULL)
@@ -362,13 +440,29 @@ SkipListNode<KeyType,DataType>* SkipList<KeyType,DataType>::Get(KeyType key) con
             if(curr->keyvalue.first<key)
             {
 //                printf("node->next[i]->keyvalue.first<key;\n");
+
+                pre->dec_ref();
+                //add:e
                 pre = curr;
+                //curr->dec_ref();
                 curr=curr->next[i];
             }
             else if(curr->keyvalue.first==key)
             {
+
+                pre->dec_ref();
+                if(curr->mark == false)
+                {
+                    return curr;
+                }
+                else //node has been deleted
+                {
+                    curr->dec_ref();
+                    return NULL;
+                }
+                //add:e
 //                printf("node->next[i]->keyvalue.first==key;\n");
-                return curr;
+//                return curr;
             }
             else if(i==0)//?
             {
@@ -377,6 +471,9 @@ SkipListNode<KeyType,DataType>* SkipList<KeyType,DataType>::Get(KeyType key) con
             }
             else
             {
+
+                curr->dec_ref();
+                //add:e
                 curr=pre->next[i-1];
 //                printf("break;\n");
                 break;
@@ -387,6 +484,9 @@ SkipListNode<KeyType,DataType>* SkipList<KeyType,DataType>::Get(KeyType key) con
         {
             if(i>0)
             {
+
+                curr->dec_ref();
+                //add:e
                 curr = pre->next[i-1];
             }
             else
@@ -468,6 +568,9 @@ template<typename KeyType,typename DataType>
 bool SkipList<KeyType,DataType>::Delete(KeyType key)
 {
     Node* node=head_;
+
+    node->inc_ref();
+    //add:e
     Node* update[level_];
     int key_level=0;
 
@@ -477,21 +580,36 @@ bool SkipList<KeyType,DataType>::Delete(KeyType key)
         {
             if(node->next[i]->keyvalue.first < key)
             {
+
+                node->dec_ref();
+                //add:e
                 node=node->next[i];
             }
             else if(node->next[i]->keyvalue.first == key)
             {
-                //计算key节点next指针一共有多少层
-                key_level=sizeof(node->next[i]->next)/sizeof(Node*);
+
+                key_level++;
+                if(key_level == 1)
+                {
+                    node->next[i]->mark = true;
+                }
+                node->next[i]->dec_ref();
                 break;
+                //计算key节点next指针一共有多少层
+//                key_level=sizeof(node->next[i]->next)/sizeof(Node*);
+//                break;
             }
             else
             {
+
+                node->next[i]->dec_ref();
+                //add:e
                 break;
             }
         }
         update[i]=node;
     }
+    node->dec_ref();
 
     if(key_level == 0)
     {
