@@ -3,7 +3,8 @@
 
 int main()
 {
-    Server *server =new Server(2);
+//    Server *server =new Server(2);
+    Server *server =new Server(7);
     char *p = (char *)server->getMemoryManagerInstance()->getDataAddress();
 //    uint64_t addr[MAX_ADDR_LENGTH];
 
